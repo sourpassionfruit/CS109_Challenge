@@ -49,12 +49,45 @@ for key, value in dictX2.items():
     print ("{:<10} {:<10} {:<10}".format(y, x1, x0))
 
 
-# sample data: someone who is a women and born poor, predict outcome
-prob0 = float(total - y1Count) / total * dictX1.get(0)[1] * dictX2.get(0)[1]
-prob1 = float(y1Count) / total * dictX1.get(1)[1] * dictX2.get(1)[1]
-print("If Y = 0, prob is", prob0)
-print("If Y = 1, prob is", prob1)
-if prob0 > prob1:
-    print("We predict Y = 0, the person will be poor")
-else:
-    print("We predict Y = 1, the person will be rich")
+# # sample data: someone who is a women and born poor, predict outcome
+# prob0 = float(total - y1Count) / total * dictX1.get(0)[1] * dictX2.get(0)[1]
+# prob1 = float(y1Count) / total * dictX1.get(1)[1] * dictX2.get(1)[1]
+# print("If Y = 0, prob is", prob0)
+# print("If Y = 1, prob is", prob1)
+# if prob0 > prob1:
+#     print("We predict Y = 0, the person will be poor")
+# else:
+#     print("We predict Y = 1, the person will be rich")
+#
+# print(dictX1)
+# print(dictX2)
+
+# sample testing
+# x1 = wealth born, x2 = gender
+samples = []
+samples.append([0, 0])
+samples.append([1, 1])
+samples.append([1, 0])
+samples.append([0, 1])
+for sample in samples:
+    prob0 = float(total - y1Count) / total * dictX1.get(0)[sample[0] + 1] * dictX2.get(0)[sample[1] + 1]
+    prob1 = float(y1Count) / total * dictX1.get(1)[sample[1] + 1] * dictX2.get(1)[sample[1] + 1]
+    # if sample == [1, 1]:
+    #     prob0 = float(total - y1Count) / total * dictX1.get(0)[2] * dictX2.get(0)[2]
+    #     prob1 = float(y1Count) / total * dictX1.get(1)[2] * dictX2.get(1)[2]
+    # if sample == [0, 1]:
+    #     prob0 = float(total - y1Count) / total * dictX1.get(0)[1] * dictX2.get(0)[2]
+    #     prob1 = float(y1Count) / total * dictX1.get(1)[1] * dictX2.get(1)[2]
+    # if sample == [1, 0]:
+    #     prob0 = float(total - y1Count) / total * dictX1.get(0)[2] * dictX2.get(0)[1]
+    #     prob1 = float(y1Count) / total * dictX1.get(1)[2] * dictX2.get(1)[1]
+    # if sample == [0, 0]:
+    #     prob0 = float(total - y1Count) / total * dictX1.get(0)[1] * dictX2.get(0)[1]
+    #     prob1 = float(y1Count) / total * dictX1.get(1)[1] * dictX2.get(1)[1]
+    # printing results
+    if prob0 > prob1:
+        print("Given", sample, "We predict Y = 0, the person will more likely be poor in his lifetime")
+    else:
+        print("Given", sample, "We predict Y = 1, the person will more likely be rich in his lifetime")
+    print("If Y = 0, prob is", prob0)
+    print("If Y = 1, prob is", prob1)
